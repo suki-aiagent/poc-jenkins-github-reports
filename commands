@@ -1,0 +1,315 @@
+docker pull jenkins/jenkins:jdk21
+
+docker build -t jg .
+docker run -dt -p 8080:8080 –name jen jg
+
+docker run -dt -p 8080:8080 --name jenkins jenkins/jenkins:jdk21
+
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+docker exec jen cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+apk add openjdk21
+export JAVA_HOME=/opt/java/jdk-21
+export PATH=$JAVA_HOME/bin:$PATH
+export GRADLE_HOME=/opt/gradle-9.0.0
+export PATH=$GRADLE_HOME/bin:$PATH
+
+https://services.gradle.org/distributions/gradle-9.0.0-all.zip
+
+
+wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jdk_x64_linux_hotspot_21.0.8_9.tar.gz
+mkdir -p /opt/java && tar -xvzf OpenJDK21U-jdk_x64_linux_hotspot_21.0.8_9.tar.gz -C /opt/java && mv /opt/java/jdk-21.0.8+9 /opt/java/jdk-21
+
+
+#!/bin/bash
+cd app
+gradle clean build 
+gradle test
+ 
+
+https://docs.gradle.org/current/samples/sample_building_java_applications.html
+https://docs.gradle.org/current/userguide/java_testing.html#java_testing
+
+
+https://aka.ms/configure-codespace
+https://aka.ms/ghcs-default-image
+
+
+
+
+java_app_gradle_declarative_pipeline
+java_app_gradle_scripted_pipeline
+java_app_gradle_genric
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh './gradlew clean build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './gradlew test'
+            }
+            post {
+                always {
+                    // Publish JUnit reports
+                    junit 'build/test-results/test/*.xml'
+                }
+            }
+        }
+    }
+}
+
+
+
+
+java_app_gradle_declartive_pl
+
+stages {
+  stage('Build') {
+    steps {
+      // One or more steps need to be included within the steps block.
+    }
+  }
+
+  stage('Test') {
+    steps {
+      // One or more steps need to be included within the steps block.
+    }
+  }
+
+  stage('Deploy') {
+    steps {
+      // One or more steps need to be included within the steps block.
+    }
+  }
+
+}
+
+sh '''cd app
+gradle clean build 
+gradle test''’
+
+checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/suki-aiagent/poc-java-app1.git']])
+
+deploy adapters: [tomcat9(alternativeDeploymentContext: '', path: '', url: 'https://loclahost:8080')], contextPath: null, war: '*/*.war’
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+node {
+    def mvnHome
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool 'M3'
+    }
+    stage('Build') {
+        // Run the maven build
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+            }
+        }
+    }
+    stage('Results') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
+    }
+}
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh './gradlew clean build'
+	    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/suki-aiagent/poc-java-app1.git']])
+	    sh '''cd app
+	    gradle clean build''’
+
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './gradlew test'
+            }
+            post {
+                always {
+                    // Publish JUnit reports
+                    junit 'build/test-results/test/*.xml'
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+Dockerfile with Gradle
+
+FROM jenkins/jenkins:jdk21
+
+USER root
+
+# Install wget & unzip
+RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*
+
+# Install Gradle
+ENV GRADLE_VERSION=9.0.0
+RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip -P /tmp \
+    && unzip /tmp/gradle-${GRADLE_VERSION}-bin.zip -d /opt/gradle \
+    && ln -s /opt/gradle/gradle-${GRADLE_VERSION} /opt/gradle/latest \
+    && rm /tmp/gradle-${GRADLE_VERSION}-bin.zip
+
+# Set Gradle path
+ENV PATH="${PATH}:/opt/gradle/latest/bin"
+
+USER jenkins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+	    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/suki-aiagent/poc-java-app1.git']])
+	    sh '''cd app
+	    gradle clean build -x test'''
+            }
+        }
+        stage('Test') {
+            steps {
+	            sh '''cd app
+                gradle test'''
+            }
+            post {
+                always {
+                    // Publish JUnit reports
+                    junit 'app/build/test-results/test/*.xml'
+                }
+            }
+        }
+    }
+}
+
+
+node {
+    stage('Build') {
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: '*/main']],
+            doGenerateSubmoduleConfigurations: false,
+            extensions: [],
+            userRemoteConfigs: [[url: 'https://github.com/suki-aiagent/poc-java-app1.git']]
+        ])
+        sh '''
+            cd app
+            gradle clean build -x test
+        '''
+    }
+
+    stage('Test') {
+        try {
+            sh '''
+                cd app
+                gradle test
+            '''
+        } finally {
+            // Publish JUnit reports even if tests fail
+            junit 'app/build/test-results/test/*.xml'
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2sep25
+
+# Update packages
+sudo apt-get update
+
+# Install dependencies
+sudo apt-get install -y wget tar
+
+# Download and install the GitHub Actions Importer CLI
+wget https://github.com/github/gh-actions-importer/releases/latest/download/gh-actions-importer-linux-amd64.tar.gz
+
+# Extract and install
+tar -xvzf gh-actions-importer-linux-amd64.tar.gz
+sudo mv gh-actions-importer /usr/local/bin/
+
+gh-actions-importer audit jenkins --jenkins-url https://jenkins.example.org --output-dir ./import-results
+
+
+gh actions-importer audit jenkins –jenkins-url http://ip172-18-0-14-d2rhufc69qi000fmcd80-8080.direct.labs.play-with-docker.com/ --output-dir ./audit-results
+
+
