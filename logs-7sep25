@@ -1,0 +1,65 @@
+GITHUB_ACCESS_TOKEN=
+GITHUB_INSTANCE_URL=https://github.com
+JENKINS_ACCESS_TOKEN=
+JENKINS_INSTANCE_URL=http://localhost:8080
+JENKINS_USERNAME=admin
+
+
+# Logfile created on 2025-09-07 10:53:44 +0000 by logger.rb/v1.6.0
+I, [2025-09-07T10:53:44.473063 #1]  INFO -- : Using GitHub Features: Defaults
+I, [2025-09-07T10:53:44.473107 #1]  INFO -- : Auditing 'http://localhost:8080'
+I, [2025-09-07T10:53:44.482632 #1]  INFO -- request: GET http://localhost:8080/api/json?tree=jobs%5Bname%2Curl%2CfullName%5D
+I, [2025-09-07T10:53:44.533551 #1]  INFO -- request: GET https://api.github.com/user
+I, [2025-09-07T10:53:44.836246 #1]  INFO -- response: Status 200
+I, [2025-09-07T10:53:44.837544 #1]  INFO -- : Sending telemetry with transaction id 'e4ce98df-2e3d-43eb-8c09-9980f0a2246c'
+E, [2025-09-07T10:53:45.560290 #1] ERROR -- : Failed to connect to 'http://localhost:8080/api/json?tree=jobs%5Bname%2Curl%2CfullName%5D'. Please ensure the server is reachable and your environment variables and options are set correctly. Error: Failed to open TCP connection to localhost:8080 (Connection refused - connect(2) for "localhost" port 8080)
+/usr/local/lib/ruby/3.3.0/net/http.rb:1603:in `initialize'
+/usr/local/lib/ruby/3.3.0/net/http.rb:1603:in `open'
+/usr/local/lib/ruby/3.3.0/net/http.rb:1603:in `block in connect'
+/usr/local/lib/ruby/3.3.0/timeout.rb:186:in `block in timeout'
+/usr/local/lib/ruby/3.3.0/timeout.rb:193:in `timeout'
+/usr/local/lib/ruby/3.3.0/net/http.rb:1601:in `connect'
+/usr/local/lib/ruby/3.3.0/net/http.rb:1580:in `do_start'
+/usr/local/lib/ruby/3.3.0/net/http.rb:1569:in `start'
+/usr/local/bundle/gems/faraday-net_http-3.0.2/lib/faraday/adapter/net_http.rb:112:in `request_with_wrapped_block'
+/usr/local/bundle/gems/faraday-net_http-3.0.2/lib/faraday/adapter/net_http.rb:102:in `perform_request'
+/usr/local/bundle/gems/faraday-net_http-3.0.2/lib/faraday/adapter/net_http.rb:66:in `block in call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/adapter.rb:45:in `connection'
+/usr/local/bundle/gems/faraday-net_http-3.0.2/lib/faraday/adapter/net_http.rb:65:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/middleware.rb:17:in `call'
+/usr/local/bundle/gems/faraday-multipart-1.0.4/lib/faraday/multipart/middleware.rb:28:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/middleware.rb:17:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/response/logger.rb:23:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/middleware.rb:17:in `call'
+/usr/local/bundle/gems/faraday-http-cache-2.5.0/lib/faraday/http_cache.rb:286:in `fetch'
+/usr/local/bundle/gems/faraday-http-cache-2.5.0/lib/faraday/http_cache.rb:190:in `process'
+/usr/local/bundle/gems/faraday-http-cache-2.5.0/lib/faraday/http_cache.rb:141:in `call!'
+/usr/local/bundle/gems/faraday-http-cache-2.5.0/lib/faraday/http_cache.rb:121:in `call'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/adapters/faraday/middleware/exception_handling.rb:7:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/middleware.rb:17:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/middleware.rb:17:in `call'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/rack_builder.rb:153:in `build_response'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/connection.rb:445:in `run_request'
+/usr/local/bundle/gems/faraday-2.7.2/lib/faraday/connection.rb:200:in `get'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/adapters/jenkins/client.rb:29:in `fetch_all_pipelines'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/services/jenkins/extract_all_pipelines.rb:77:in `block in pipelines'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/services/jenkins/extract_all_pipelines.rb:76:in `map'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/services/jenkins/extract_all_pipelines.rb:76:in `pipelines'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/services/jenkins/extract_all_pipelines.rb:16:in `call'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/adapters/provider_resolver.rb:66:in `call'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/commands/audit.rb:16:in `block in call'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/logger.rb:96:in `with_progress_bar'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/commands/audit.rb:15:in `call'
+/usr/local/bundle/gems/actions_importer-1.3.22465/lib/valet/subcommands/audit.rb:28:in `jenkins'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor/command.rb:27:in `run'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor/invocation.rb:127:in `invoke_command'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor.rb:392:in `dispatch'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor/invocation.rb:116:in `invoke'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor.rb:243:in `block in subcommand'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor/command.rb:27:in `run'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor/invocation.rb:127:in `invoke_command'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor.rb:392:in `dispatch'
+/usr/local/bundle/gems/thor-1.2.2/lib/thor/base.rb:485:in `start'
+/usr/local/bundle/gems/actions_importer-1.3.22465/exe/actions-importer:19:in `<top (required)>'
+/usr/local/bundle/bin/actions-importer:25:in `load'
+/usr/local/bundle/bin/actions-importer:25:in `<main>'
