@@ -1,0 +1,47 @@
+{
+  "project": {
+    "description": null,
+    "keepDependencies": "false",
+    "properties": null,
+    "scm": {
+      "class": "hudson.plugins.git.GitSCM",
+      "plugin": "git@5.2.0",
+      "configVersion": "2",
+      "userRemoteConfigs": [
+        {
+          "hudson.plugins.git.UserRemoteConfig": {
+            "url": "REDACTED://github.com/suki-aiagent/poc-java-app1.git"
+          }
+        }
+      ],
+      "branches": [
+        {
+          "hudson.plugins.git.BranchSpec": {
+            "name": "*/main"
+          }
+        }
+      ],
+      "doGenerateSubmoduleConfigurations": "false",
+      "submoduleCfg": {
+        "class": "empty-list"
+      },
+      "extensions": null
+    },
+    "canRoam": "true",
+    "disabled": "false",
+    "blockBuildWhenDownstreamBuilding": "false",
+    "blockBuildWhenUpstreamBuilding": "false",
+    "triggers": null,
+    "concurrentBuild": "false",
+    "builders": [
+      {
+        "hudson.tasks.Shell": {
+          "command": "cd app\ngradle build -x test\ngradle test",
+          "configuredLocalRules": null
+        }
+      }
+    ],
+    "publishers": null,
+    "buildWrappers": null
+  }
+}

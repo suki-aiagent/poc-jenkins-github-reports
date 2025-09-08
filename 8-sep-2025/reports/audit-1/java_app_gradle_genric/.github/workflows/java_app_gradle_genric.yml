@@ -1,0 +1,16 @@
+name: java_app_gradle_genric
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on:
+      - ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: run command
+      shell: bash
+      run: |-
+        cd app
+        gradle build -x test
+        gradle test

@@ -1,0 +1,19 @@
+# Logfile created on 2025-09-08 14:08:50 +0000 by logger.rb/v1.6.0
+I, [2025-09-08T14:08:50.499888 #1]  INFO -- : Using GitHub Features: Defaults
+I, [2025-09-08T14:08:50.501050 #1]  INFO -- request: GET http://localhost:8080/job/java_app_gradle_declartive_pl/config.xml
+I, [2025-09-08T14:08:50.520986 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:08:50.529766 #1]  INFO -- request: POST http://localhost:8080/pipeline-model-converter/toJson
+I, [2025-09-08T14:08:50.540890 #1]  INFO -- response: Status 200
+D, [2025-09-08T14:08:50.542327 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::Defaults]: Failed to locate transformer for 'any'
+D, [2025-09-08T14:08:50.542416 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::RunsOn]: Located transformer for 'any'
+D, [2025-09-08T14:08:50.542478 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::RunsOn]: Located transformer for 'any'
+D, [2025-09-08T14:08:50.542764 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::Container]: Failed to locate transformer for 'any'
+D, [2025-09-08T14:08:50.543555 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'checkout'
+D, [2025-09-08T14:08:50.544616 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'sh'
+D, [2025-09-08T14:08:50.544802 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'sh'
+D, [2025-09-08T14:08:50.544907 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'junit'
+I, [2025-09-08T14:08:50.547807 #1]  INFO -- : Output file(s):
+I, [2025-09-08T14:08:50.552159 #1]  INFO -- :   reports/dry-run-1/java_app_gradle_declartive_pl/.github/workflows/java_app_gradle_declartive_pl.yml
+I, [2025-09-08T14:08:50.596606 #1]  INFO -- request: GET https://api.github.com/user
+I, [2025-09-08T14:08:50.965684 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:08:50.967306 #1]  INFO -- : Sending telemetry with transaction id '2bc48bb2-7e25-4d3d-bd41-f3ef773dbca3'

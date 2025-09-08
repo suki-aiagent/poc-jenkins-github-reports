@@ -1,0 +1,16 @@
+{
+  "flow-definition": {
+    "plugin": "workflow-job@1326.ve643e00e9220",
+    "description": null,
+    "keepDependencies": "false",
+    "properties": null,
+    "definition": {
+      "class": "org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition",
+      "plugin": "workflow-cps@3791.va_c0338ea_b_59c",
+      "script": "node {\n    stage('Build') {\n        checkout([\n            $class: 'GitSCM',\n            branches: [[name: '*/main']],\n            doGenerateSubmoduleConfigurations: false,\n            extensions: [],\n            userRemoteConfigs: [[url: 'REDACTED://github.com/suki-aiagent/poc-java-app1.git']]\n        ])\n        sh '''\n            cd app\n            gradle build -x test\n        '''\n    }\n\n    stage('Test') {\n        try {\n            sh '''\n                cd app\n                gradle test\n            '''\n        } finally {\n            // Publish JUnit reports even if tests fail\n            junit 'app/build/test-results/test/*.xml'\n        }\n    }\n}\n",
+      "sandbox": "true"
+    },
+    "triggers": null,
+    "disabled": "false"
+  }
+}

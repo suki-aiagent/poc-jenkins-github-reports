@@ -1,0 +1,32 @@
+# Logfile created on 2025-09-08 14:33:36 +0000 by logger.rb/v1.6.0
+I, [2025-09-08T14:33:36.970562 #1]  INFO -- : Using GitHub Features: Defaults
+I, [2025-09-08T14:33:36.971868 #1]  INFO -- request: GET http://localhost:8080/job/java_app_gradle_declartive_pl/config.xml
+I, [2025-09-08T14:33:36.997443 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:33:37.009566 #1]  INFO -- request: POST http://localhost:8080/pipeline-model-converter/toJson
+I, [2025-09-08T14:33:37.028143 #1]  INFO -- response: Status 200
+D, [2025-09-08T14:33:37.030589 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::Defaults]: Failed to locate transformer for 'any'
+D, [2025-09-08T14:33:37.030717 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::RunsOn]: Located transformer for 'any'
+D, [2025-09-08T14:33:37.030800 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::RunsOn]: Located transformer for 'any'
+D, [2025-09-08T14:33:37.031118 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::Container]: Failed to locate transformer for 'any'
+D, [2025-09-08T14:33:37.032018 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'checkout'
+D, [2025-09-08T14:33:37.033775 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'sh'
+D, [2025-09-08T14:33:37.034102 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'sh'
+D, [2025-09-08T14:33:37.034297 #1] DEBUG -- : [Transformers::Jenkins::JenkinsfilePipeline::DeclarativePipeline::StepTransformer]: Located transformer for 'junit'
+I, [2025-09-08T14:33:37.095605 #1]  INFO -- request: GET https://api.github.com/repos/suki-aiagent/poc-java-app1
+I, [2025-09-08T14:33:37.509529 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:33:37.517336 #1]  INFO -- request: GET https://api.github.com/repos/suki-aiagent/poc-java-app1/git/refs/heads/main
+I, [2025-09-08T14:33:37.893307 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:33:37.894628 #1]  INFO -- request: POST https://api.github.com/repos/suki-aiagent/poc-java-app1/git/refs
+I, [2025-09-08T14:33:38.509858 #1]  INFO -- response: Status 201
+I, [2025-09-08T14:33:38.511031 #1]  INFO -- request: GET https://api.github.com/repos/suki-aiagent/poc-java-app1/contents/.github/workflows/java_app_gradle_declartive_pl.yml?sha=72a07ac37d4506d5020d5c6561c6308d13b79fa4
+I, [2025-09-08T14:33:39.083439 #1]  INFO -- response: Status 404
+I, [2025-09-08T14:33:39.088966 #1]  INFO -- request: PUT https://api.github.com/repos/suki-aiagent/poc-java-app1/contents/.github/workflows/java_app_gradle_declartive_pl.yml
+I, [2025-09-08T14:33:39.813012 #1]  INFO -- response: Status 201
+I, [2025-09-08T14:33:39.823891 #1]  INFO -- request: POST https://api.github.com/repos/suki-aiagent/poc-java-app1/pulls
+I, [2025-09-08T14:33:40.910598 #1]  INFO -- response: Status 201
+I, [2025-09-08T14:33:40.920354 #1]  INFO -- : Pull request: 'https://github.com/suki-aiagent/poc-java-app1/pull/1'
+I, [2025-09-08T14:33:40.922642 #1]  INFO -- request: GET https://api.github.com/user
+I, [2025-09-08T14:33:41.301966 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:33:41.303587 #1]  INFO -- request: GET https://api.github.com/repos/suki-aiagent/poc-java-app1
+I, [2025-09-08T14:33:41.690247 #1]  INFO -- response: Status 200
+I, [2025-09-08T14:33:41.692089 #1]  INFO -- : Sending telemetry with transaction id '3fcc253a-e79f-422b-80b6-6d806180ff85'

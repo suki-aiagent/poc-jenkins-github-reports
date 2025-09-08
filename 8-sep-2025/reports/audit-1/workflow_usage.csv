@@ -1,0 +1,21 @@
+Pipeline,Action,File path
+demo_pipeline,actions/checkout@v4.1.0,reports/audit-1/demo_pipeline/.github/workflows/demo_pipeline.yml
+demo_pipeline,actions/upload-artifact@v4.1.0,reports/audit-1/demo_pipeline/.github/workflows/demo_pipeline.yml
+demo_pipeline,EnricoMi/publish-unit-test-result-action@v2.12.0,reports/audit-1/demo_pipeline/.github/workflows/demo_pipeline.yml
+java_app_gradle_declartive_pl,actions/checkout@v4.1.0,reports/audit-1/java_app_gradle_declartive_pl/.github/workflows/java_app_gradle_declartive_pl.yml
+java_app_gradle_declartive_pl,EnricoMi/publish-unit-test-result-action@v2.12.0,reports/audit-1/java_app_gradle_declartive_pl/.github/workflows/java_app_gradle_declartive_pl.yml
+java_app_gradle_genric,actions/checkout@v4.1.0,reports/audit-1/java_app_gradle_genric/.github/workflows/java_app_gradle_genric.yml
+monas_dev_work/monas_freestyle,actions/checkout@v4.1.0,reports/audit-1/monas_dev_work/monas_freestyle/.github/workflows/monas_freestyle.yml
+monas_dev_work/monas_pipeline,actions/checkout@v4.1.0,reports/audit-1/monas_dev_work/monas_pipeline/.github/workflows/monas_pipeline.yml
+test_freestyle_project,actions/checkout@v4.1.0,reports/audit-1/test_freestyle_project/.github/workflows/test_freestyle_project.yml
+test_pipeline,actions/checkout@v4.1.0,reports/audit-1/test_pipeline/.github/workflows/test_pipeline.yml
+test_pipeline,EnricoMi/publish-unit-test-result-action@v2.12.0,reports/audit-1/test_pipeline/.github/workflows/test_pipeline.yml
+
+Pipeline,Secret,File path
+monas_dev_work/monas_freestyle,${{ secrets.SECRET_TEST_EXPRESSION_VAR }},reports/audit-1/monas_dev_work/monas_freestyle/.github/workflows/monas_freestyle.yml
+test_freestyle_project,${{ secrets.EXPRESSION_FIRST_VAR }},reports/audit-1/test_freestyle_project/.github/workflows/test_freestyle_project.yml
+
+Pipeline,Runner,File path
+demo_pipeline,TeamARunner,reports/audit-1/demo_pipeline/.github/workflows/demo_pipeline.yml
+test_freestyle_project,DemoRunner,reports/audit-1/test_freestyle_project/.github/workflows/test_freestyle_project.yml
+test_pipeline,TeamARunner,reports/audit-1/test_pipeline/.github/workflows/test_pipeline.yml

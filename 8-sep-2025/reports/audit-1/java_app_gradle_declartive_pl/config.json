@@ -1,0 +1,32 @@
+{
+  "flow-definition": {
+    "plugin": "workflow-job@1326.ve643e00e9220",
+    "actions": [
+      {
+        "org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobAction": {
+          "plugin": "pipeline-model-definition@2.2144.v077a_d1928a_40"
+        }
+      },
+      {
+        "org.jenkinsci.plugins.pipeline.modeldefinition.actions.DeclarativeJobPropertyTrackerAction": {
+          "plugin": "pipeline-model-definition@2.2144.v077a_d1928a_40",
+          "jobProperties": null,
+          "triggers": null,
+          "parameters": null,
+          "options": null
+        }
+      }
+    ],
+    "description": null,
+    "keepDependencies": "false",
+    "properties": null,
+    "definition": {
+      "class": "org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition",
+      "plugin": "workflow-cps@3791.va_c0338ea_b_59c",
+      "script": "pipeline {\n    agent any\n\n    stages {\n        stage('Build') {\n            steps {\n\t    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'REDACTED://github.com/suki-aiagent/poc-java-app1.git']])\n\t    sh '''cd app\n\t    gradle build -x test'''\n            }\n        }\n        stage('Test') {\n            steps {\n\t            sh '''cd app\n                gradle test'''\n            }\n            post {\n                always {\n                    // Publish JUnit reports\n                    junit 'app/build/test-results/test/*.xml'\n                }\n            }\n        }\n    }\n}\n",
+      "sandbox": "true"
+    },
+    "triggers": null,
+    "disabled": "false"
+  }
+}
